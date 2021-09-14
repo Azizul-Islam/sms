@@ -63,7 +63,7 @@
                 </tr>
                 @empty
                 <tr>
-                    <td colspan="6">
+                    <td colspan="9">
                         <span class="text-danger">Marks isn't assign yet!!</span>
                     </td>
                 </tr>
@@ -72,6 +72,7 @@
             </tbody>
         </table>
         <hr>
+        @if($total_gpa>0)
         @php
             $cgpa = $total_gpa/$total_credit;
         @endphp
@@ -101,6 +102,7 @@
             </b> and Cgpa : 
             <b class="text-primary">{{ $cgpa }}</b></h3>
         
+            @endif
     </div>
 </div>
 

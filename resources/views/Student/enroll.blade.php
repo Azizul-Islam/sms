@@ -36,13 +36,13 @@
                         @if(!checkExistsEnrolledCourse($c->teacher->id,$c->course->id,$c->semester->id,$c->session->id))
                         <form action="{{ route('student.take-teacher',$c->id) }}" method="post">
                             @csrf
-                            <button class="btn btn-sm btn-success"><i class="fa fa-user"></i> Take Teacher</button>
+                            <button class="btn btn-sm btn-success"><i class="fa fa-plus"></i> Enroll</button>
                         </form>
                         @else
                         <form action="{{ route('student.remove-teacher',$c->id) }}" method="post">
                             @csrf
                             @method('DELETE')
-                            <button class="btn btn-sm btn-danger"><i class="fa fa-user"></i> Remove Teacher</button>
+                            <button class="btn btn-sm btn-danger"><i class="fa fa-minus"></i> Remove</button>
                         </form>
                         @endif
                     </td>

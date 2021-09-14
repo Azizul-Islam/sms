@@ -11,7 +11,7 @@ class EnrollCourseController extends Controller
 {
     public  function enrollCourse()
     {
-        $courses = CourseTeacher::whereDepartmentId(auth('student')->user()->department_id)->get();
+        $courses = CourseTeacher::where(['department_id'=>auth('student')->user()->department_id,'semester_id'=>auth('student')->user()->semester_id])->get();
         // dd($courses);
         return view('Student.enroll', compact('courses'));
     }

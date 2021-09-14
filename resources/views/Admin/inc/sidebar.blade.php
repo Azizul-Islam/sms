@@ -239,6 +239,7 @@
                             </p>
                         </a>
                     </li>
+                    @if(App\Models\Registration::where(['student_id'=>auth('student')->user()->id,'status'=>'approve'])->first())
                     <li class="nav-item">
                         <a href="{{ route('student.enroll-course') }}" class="nav-link">
                             <i class="nav-icon fa fa-book"></i>
@@ -256,6 +257,7 @@
                             </p>
                         </a>
                     </li>
+                    @endif
                     <li class="nav-item">
                         <a href="{{ route('student.marks') }}" class="nav-link">
                             <i class="nav-icon fa fa-book"></i>
