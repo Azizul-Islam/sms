@@ -55,6 +55,17 @@
                         <div id="response"></div>
                     </div>
                     <div class="form-group">
+                        <label for="">Session *</label>
+                       <select name="session_id" id="session_id" class="form-control" id="">
+                           <option value="">Select One</option>
+                           @foreach ($sessions as $item)
+                               <option value="{{ $item->id }}">{{ $item->name }}</option>
+                           @endforeach
+                       </select>
+                        <span class="text-danger" id="sessionError"></span>
+                        <div id="response"></div>
+                    </div>
+                    <div class="form-group">
                         <label for="">Semester *</label>
                        <select name="semester_id" id="semester_id" class="form-control" id="">
                            <option value="">Select One</option>
@@ -96,6 +107,14 @@
                     <div class="form-group">
                         <label for="">Credit</label>
                         <input type="text" id="course_credit" name="credit" value="" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Semester</label>
+                       <select name="session_id" class="form-control" id="course_session_id">
+                        @foreach ($sessions as $item)
+                            <option value="{{ $item->id }}">{{ $item->name }}</option>
+                        @endforeach
+                       </select>
                     </div>
                     <div class="form-group">
                         <label for="">Semester</label>
@@ -198,12 +217,14 @@
         let codeError = $('#codeError');
         let creditError = $('#creditError');
         let semesterError = $('#semesterError');
+        let sessionError = $('#sessionError');
         nameError.text('')
         axios.post("{{ route('admin.course.store') }}", {
             name: $('#add_cat_name').val(),
             code: $('#code').val(),
             credit: $('#credit').val(),
-            semester_id: $('#semester_id').val()
+            semester_id: $('#semester_id').val(),
+            session_id: $('#session_id').val(),
         })
         .then(function (response) {
             getAllCourse();
@@ -215,6 +236,7 @@
              $('#code').val('')
              $('#credit').val('')
              $('#semester_id').val('')
+             $('#session_id').val('')
              setSwalMessage()
 
         })
@@ -224,6 +246,7 @@
                 codeError.text(error.response.data.errors.code[0]);
                 creditError.text(error.response.data.errors.credit[0]);
                 semesterError.text(error.response.data.errors.semester_id[0]);
+                sessionError.text(error.response.data.errors.session_id[0]);
             }
         });
     });
@@ -239,6 +262,7 @@
                 $('#course_code').val(res.data.code);
                 $('#course_credit').val(res.data.credit);
                 $('#course_semester_id').val(res.data.semester_id);
+                $('#course_session_id').val(res.data.session_id);
                 $('#e_id').val(res.data.id);
             })
     })
@@ -252,6 +276,7 @@
             code : $('#course_code').val(),
             credit: $('#course_credit').val(),
             semester_id: $('#course_semester_id').val(),
+            session_id: $('#course_session_id').val(),
         }
         let url = base_path + '/admin/course' + '/'  + id
         axios.put(url,data)

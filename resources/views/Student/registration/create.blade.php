@@ -23,10 +23,10 @@
                         <div class="form-group row">
                             <label for="session" class="col-md-2 col-form-label">Session <span class="text-red">*</span></label>
                             <div class="col-md-10">
-                                <select name="session_id" required id="" class="form-control @error('session_id') is-invalid @enderror">
+                                <select name="session_id" required id="session_id" class="form-control @error('session_id') is-invalid @enderror">
                                     <option value="">Select One</option>
                                     @foreach ($sessions as $item)
-                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                        <option value="{{ $item->id }}" {{auth()->user()->session_id == $item->id ? 'selected' : ''}}>{{ $item->name }}</option>
                                     @endforeach
                                 </select>
                                 @error('session_id')
@@ -76,13 +76,15 @@
         $(document).ready(function(){
             $(document).on('change','#semester_id',function(){
                 var semester_id = $(this).val();
+                var session_id = $('#session_id').val();
                 $.ajax({
-                    url: "{{ route('get-course') }}",
+                    url: "{{ route('student.get-reg.course') }}",
                     methos: 'GET',
                     dataType: 'JSON',
                     data: {
                         _token: "{{ csrf_token() }}",
-                        semester_id: semester_id
+                        semester_id: semester_id,
+                        session_id: session_id,
                     },
                     success: function(data){
                        $('#course-div').removeClass('d-none');

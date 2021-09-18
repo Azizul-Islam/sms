@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\DepartmentAdminController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\DAdmin\AssignCourseController;
 use App\Http\Controllers\DAdmin\AuthController as DAdminAuthController;
+use App\Http\Controllers\DAdmin\NoticeController;
 use App\Http\Controllers\DAdmin\RegisterStudentController;
 use App\Http\Controllers\DefaultController;
 use App\Models\Setting;
@@ -70,6 +71,9 @@ Route::prefix('d-admin')->name('d-admin.')->group(function () {
         Route::get('register-student',[RegisterStudentController::class,'index'])->name('register-student.index');
         Route::post('register-student/approve/{id}',[RegisterStudentController::class,'approve'])->name('register-student.approve');
         Route::get('register-student/{registration}',[RegisterStudentController::class,'show'])->name('register-student.show');
+
+        //notice
+        Route::resource('notices', NoticeController::class);
     });
 });
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Course;
 use App\Models\Semester;
+use App\Models\Session;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
@@ -12,7 +13,8 @@ class CourseController extends Controller
     public function index()
     {
         $semesters = Semester::latest()->get();
-        return view('Admin.course',compact('semesters'));
+        $sessions = Session::latest()->get();
+        return view('Admin.course',compact('semesters','sessions'));
     }
     function courseFetch()
     {
@@ -24,7 +26,8 @@ class CourseController extends Controller
             'name' => ['required'],
             'code' => 'required',
             'credit' => 'required',
-            'semester_id' => 'required'
+            'semester_id' => 'required',
+            'session_id' => 'required',
         ]);
         Course::create($request->all());
     }

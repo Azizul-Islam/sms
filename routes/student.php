@@ -1,6 +1,6 @@
 <?php
 
-
+use App\Http\Controllers\DefaultController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MarkController;
 use App\Http\Controllers\Student\EnrollCourse;
@@ -29,5 +29,9 @@ Route::prefix('student')->name('student.')->group(function () {
         Route::get('course-registration',[CourseRegistrationController::class,'index'])->name('course-registration.index');
         Route::get('course-registration/create',[CourseRegistrationController::class,'create'])->name('course-registration.create');
         Route::post('course-registration',[CourseRegistrationController::class,'store'])->name('course-registration.store');
+
+        Route::get('notice',[DefaultController::class,'notice'])->name('notice');
+
+        Route::get('get-reg/course',[DefaultController::class,'getRegCourse'])->name('get-reg.course');
     });
 });

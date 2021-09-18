@@ -183,6 +183,14 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a href="{{ route('d-admin.notices.index') }}" class="nav-link">
+                            <i class="nav-icon fa fa-user-alt-slash"></i>
+                            <p>
+                                Notice
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <form action="{{ route('logout') }}" class="d-inline" method="POST">
                             @csrf
                             <input type="hidden" value="dept_admin" name="auth">
@@ -263,6 +271,14 @@
                             <i class="nav-icon fa fa-book"></i>
                             <p>
                                 Mark
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('student.notice') }}" class="nav-link">
+                            <i class="nav-icon fa fa-book"></i>
+                            <p>
+                                Notice
                             </p>
                         </a>
                     </li>

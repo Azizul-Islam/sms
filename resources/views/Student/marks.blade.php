@@ -107,3 +107,6 @@
 </div>
 
 @stop
+userName: hasiburrk_sms_system
+
+pass: +?04yv%ACI_)

@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Course extends Model
 {
     use HasFactory;
-    protected $fillable = ['name','code','credit','semester_id'];
+    protected $fillable = ['name','code','credit','semester_id','session_id'];
 
 
     public function setNameAttribute($value)
@@ -20,5 +20,9 @@ class Course extends Model
     public function semester()
     {
         return $this->belongsTo(Semester::class,'semester_id');
+    }
+    public function session()
+    {
+        return $this->belongsTo(Session::class,'session_id');
     }
 }

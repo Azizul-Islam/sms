@@ -39,11 +39,11 @@
                             <button class="btn btn-sm btn-success"><i class="fa fa-plus"></i> Enroll</button>
                         </form>
                         @else
-                        <form action="{{ route('student.remove-teacher',$c->id) }}" method="post">
+                        {{-- <form action="{{ route('student.remove-teacher',$c->id) }}" method="post">
                             @csrf
                             @method('DELETE')
                             <button class="btn btn-sm btn-danger"><i class="fa fa-minus"></i> Remove</button>
-                        </form>
+                        </form> --}}
                         @endif
                     </td>
                 </tr>
